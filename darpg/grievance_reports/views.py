@@ -11,9 +11,31 @@ from authentication.decorators import only_authenticated_user, redirect_authenti
 from .forms import GrievanceReportForm
 from .models import GrievanceReport
 
-# @only_authenticated_user
+blog = {
+    'category':'Railways Customer Service',
+    'category_code': '1225',
+    'title': 'Unavailability of Reserved Seating on Train XYZ - Booking ID: 123456789',
+    'username': 'satymevsingh',
+    'time': '2024-01-15 00:00:19',
+    'content': """I am writing to express my dissatisfaction with the recent experience I encountered while traveling on Train XYZ from Station A to Station B on March 12, 2024. Despite having made a reservation with Booking ID 123456789, I faced significant inconvenience due to the unavailability of reserved seating.
+
+Upon boarding the train at Station A, I proceeded to locate my assigned seat as per the reservation confirmation. However, upon reaching the designated coach and seat, I was dismayed to find that another passenger was occupying the same seat, claiming to have a valid reservation. Despite presenting my ticket and booking details, the situation escalated into a dispute with the other passenger, causing unnecessary delay and discomfort.
+
+Moreover, upon seeking assistance from the onboard staff, I was informed that there were no alternative seats available in the coach, forcing me to stand for a considerable duration of the journey. This not only caused physical discomfort but also posed safety concerns, particularly during peak travel hours.
+
+I find this situation unacceptable and would like to bring it to your attention for immediate resolution. As a paying customer, I expect the railway service to honor reservations and ensure the availability of adequate seating capacity to accommodate passengers as per the booking arrangements. The failure to do so not only reflects poorly on the service quality but also undermines the trust and confidence of passengers in the reliability of the railway system.
+
+I kindly request that appropriate measures be taken to address this issue and prevent similar incidents from occurring in the future. This may include conducting thorough checks to ensure accurate seating allocation, implementing effective communication channels between passengers and staff, and enhancing the capacity management system to avoid overbooking situations.
+
+I trust that you will give prompt attention to this matter and provide a satisfactory resolution at the earliest convenience. Your prompt action in this regard would be greatly appreciated.
+
+Thank you for your attention to this grievance, and I look forward to a favorable response.
+
+""",
+}
+
 def portal(request):
-    return render(request, "home.html", {})
+    return render(request, "portal_home.html", {})
 
 def chatbot(request):
     return render(request, "chatbot.html", {})
@@ -25,10 +47,10 @@ def process_grievance_report():
     pass
 
 def report(request):
-    return render(request, "reports/report.html", {})
+    return render(request, "reports/report.html", {'blog': blog})
 
 @only_authenticated_user
-def portal(request):
+def _portal(request):
     if request.is_reviewer():
         pending_reports = GrievanceReport.object.filter(reviewer=request.user, status=GrievanceReport.PENDING)
         completed_reports = GrievanceReport.objects.filter(reviewer=request.user, status=GrievanceReport.COMPLETED)
