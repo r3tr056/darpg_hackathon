@@ -43,19 +43,19 @@ DocInsight is an AI/ML-driven system designed to streamline the process of handl
 ## Screenshots
 
 ### Homepage
-<img src="./screenshots/home.jpg" alt="Homepage" width="500px" /> 
+![Homepage](./screenshots/home.JPG)
 
-### Dashboard
-<img src="./screenshots/protal.jpg" alt="Portal" width="500px" /> 
+### Dashboard Portal
+![Portal](./screenshots/portal.JPG)
 
 ### Report Details Page
-<img src="./screenshots/report.jpg" alt="Homepage" width="500px" />
+![Report Details](./screenshots/report.JPG.png)
 
 ### Search
-<img src="./screenshots/search.jpg" alt="Homepage" width="500px" />
+![Report Search](./screenshots/search.JPG)
 
 ### Share
-<img src="./screenshots/share.jpg" alt="Homepage" width="500px" />
+![Report Share](./screenshots/share.JPG)
 
 
 # AI/ML-driven Chatbot: Grievance Resolution Assistant
@@ -95,7 +95,7 @@ Users can interact with the Grievance Resolution Assistant chatbot through the D
 - "What is the status of my submitted grievance?"
 
 ### Screenshots
-<img src="./screenshots/chatbot.jpg" alt="Homepage" width="300px" /> 
+![Report Details](./screenshots/chatbot.JPG)
 
 
 The Grievance Resolution Assistant chatbot enhances the user experience of DocInsight by providing immediate assistance and guidance to citizens, ensuring a smooth and efficient grievance submission process on the CPGRAMS portal.
