@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div>
+    <div class="flex flex-col items-center justify-center px-6 py-20 mx-auto">
+        <div class="w-full border md:mt-0 sm:max-w-md xl:p-0 bg-gray-50 border-gray-300">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl leading-tight tracking-tight md:text-2xl">
+                    Create an account
+                </h1>
+                <form class="space-y-4 md:space-y-6" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Your
+                            Username</label>
+                        <input type="text" name="username" id="username"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm   focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                            placeholder="Username" required="">
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
+                            email</label>
+                        <input type="email" name="email" id="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                            placeholder="name@company.com" required="">
+                    </div>
+                    <div>
+                        <label for="password1" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                        <input type="password" name="password1" id="password1" placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                            required="">
+                    </div>
+                    <div>
+                        <label for="password2" class="block mb-2 text-sm font-medium text-gray-900">Confirm
+                            Password</label>
+                        <input type="password" name="password2" id="password2" placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                            required="">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center transition-colors">Sign
+                        Up</button>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Already have an account? <a href="/auth/signin"
+                            class="font-medium text-blue-600 hover:underline dark:text-blue-500">Sign In</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

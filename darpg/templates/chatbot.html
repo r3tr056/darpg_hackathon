@@ -1,0 +1,313 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{blog.title}}{% endblock title %}
+
+{% block style %}
+<style>
+    /* CHATBOX
+=============== */
+    .chatbox {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    /* CONTENT IS CLOSE */
+    .chatbox__support {
+        display: flex;
+        flex-direction: column;
+        height: 700px;
+        width: 400px;
+        background: #eee;
+        z-index: -123456;
+        opacity: 0;
+        transition: all .5s ease-in-out;
+    }
+
+    /* CONTENT ISOPEN */
+    .chatbox--active {
+        transform: translateY(-40px);
+        z-index: 123456;
+        opacity: 1;
+
+    }
+
+    /* BUTTON */
+    .chatbox__button {
+        text-align: right;
+    }
+
+    .send__button {
+        padding: 6px;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    /* FOOTER */
+    .chatbox__footer {
+        position: sticky;
+        bottom: 0;
+    }
+
+    .chatbox__support {
+        background: #f9f9f9;
+        height: 700px;
+        width: 400px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+
+    .chatbox__button button,
+    .chatbox__button button:focus,
+    .chatbox__button button:visited {
+        padding: 10px;
+        background: white;
+        border: none;
+        outline: none;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="chatbox">
+        <div class="chatbox__support rounded-b-lg">
+            <div id="chat__interface" class="h-full flex flex-col">
+                <div class="flex py-4 bg-blue-700 rounded-t-lg text-white items-center px-4">
+                    <div class="">
+                        <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png"
+                            alt="image">
+                    </div>
+                    <div class="ml-2">
+                        <h4 class="text-xl">Chat support</h4>
+                        <span class="text-xs">Ask any questions</span>
+                    </div>
+                </div>
+                <div class="">
+                    <div></div>
+                </div>
+                <div class="flex flex-col h-full">
+                    <div class="px-2">
+                        <div class="flex items-start gap-2.5">
+
+                            <div class="max-w-sm mx-auto mt-4" id="chatbox__messages">
+
+                                <!-- Sender's message bubble -->
+                                <div class="flex items-end justify-end">
+
+                                    <div class="bg-blue-500 text-white text-sm px-3 py-2 rounded-lg mb-2">
+                                        <p>Hey there! This is a sample message from the sender.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Receiver's message bubble -->
+                                <div class="flex items-start justify-start">
+                                    <img class="w-8 h-8 rounded-full"
+                                        src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png"
+                                        alt="Jese image">
+                                    <div class="bg-gray-300 text-sm px-3 py-2 rounded-lg mb-2">
+                                        <p>Hi! This is a sample message from the receiver.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start justify-start">
+                                    <img class="w-8 h-8 rounded-full"
+                                        src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png"
+                                        alt="Jese image">
+                                    <div class="bg-gray-300 text-sm px-3 py-2 rounded-lg mb-2">
+                                        <p>Hi! This is a sample message from the receiver.</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto py-3 px-3 flex">
+                        <input type="text" class="text-sm rounded-md w-full" placeholder="Write a message...">
+                        <button class="bg-blue-600 p-2 text-white hover:bg-blue-800 rounded-md ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-send" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-auto ">
+                    <div class="rounded-b-lg bottom-0 left-0 w-full h-16 bg-white border-t border-gray-200">
+                        <div class="grid h-full max-w-lg grid-cols-3 mx-auto font-medium">
+                            <button type="button"
+                                class="rounded-bl-lg inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group">
+                                <svg class="w-5 h-5 mb-2 text-gray-500 group-hover:text-blue-600" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                                </svg>
+                                <span class="text-sm text-gray-500 group-hover:text-blue-600">Home</span>
+                            </button>
+
+                            <button type="button"
+                                class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group">
+                                <svg class="w-5 h-5 mb-2 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2" />
+                                </svg>
+                                <span class="text-sm text-gray-500 group-hover:text-blue-600">Settings</span>
+                            </button>
+                            <button type="button"
+                                class="rounded-br-lg inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group">
+                                <svg class="w-5 h-5 mb-2 text-gray-500 group-hover:text-blue-600" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                                </svg>
+                                <span class="text-sm text-gray-500 group-hover:text-blue-600">Profile</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="settings__interface" class="hidden h-full flex flex-col">
+                <div class="flex py-4 bg-blue-700 rounded-t-lg text-white items-center px-4">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-gear" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                            <path
+                                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                        </svg>
+                    </div>
+                    <div class="ml-2">
+                        <h4 class="text-xl">Chatbot Settings</h4>
+                    </div>
+                </div>
+                <div class="mt-auto ">
+                    <div class="rounded-b-lg bottom-0 left-0 w-full h-16 bg-white border-t border-gray-200">
+                        <div class="grid h-full max-w-lg grid-cols-3 mx-auto font-medium">
+                            <button type="button"
+                                class="rounded-bl-lg inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group">
+                                <svg class="w-5 h-5 mb-2 text-gray-500 group-hover:text-blue-600" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                                </svg>
+                                <span class="text-sm text-gray-500 group-hover:text-blue-600">Home</span>
+                            </button>
+
+                            <button type="button"
+                                class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group">
+                                <svg class="w-5 h-5 mb-2 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2" />
+                                </svg>
+                                <span class="text-sm text-gray-500 group-hover:text-blue-600">Settings</span>
+                            </button>
+                            <button type="button"
+                                class="rounded-br-lg inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group">
+                                <svg class="w-5 h-5 mb-2 text-gray-500 group-hover:text-blue-600" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                                </svg>
+                                <span class="text-sm text-gray-500 group-hover:text-blue-600">Profile</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="chatbox__button">
+            <button>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green"
+                        class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts%}
+<script src="{% static 'js/chatbox.js' %}">
+
+</script>
+<!-- <script>
+    var wss_protocol = window.location.protocol == "https:" ? "wss://" : "ws://";
+    var chatSocket = new WebSocket(
+        wss_protocol + window.location.host + "/ws/chat/"
+    );
+    var messages = [];
+
+    chatSocket.onopen = function (e) {
+        document.querySelector("#chat-header").innerHTML =
+            "Welcome to Django Chatbot";
+    };
+
+    chatSocket.onmessage = function (e) {
+        var data = JSON.parse(e.data);
+        var message = data["text"];
+        messages.push(message);
+
+        var str = '<ul class="space-y-2">';
+        messages.forEach(function (msg) {
+            str += `<li class="flex ${msg.source == "bot" ? "justify-start" : "justify-end"
+                }">
+            <div class="relative max-w-xl px-4 py-2 rounded-lg shadow-md
+            ${msg.source == "bot"
+                    ? "text-gray-700 bg-white border border-gray-200"
+                    : "bg-blue-600 text-white"
+                }">
+            <span className="block font-normal">${msg.msg}</span></div></li>`;
+        });
+        str += "</ul>";
+        document.querySelector("#chat-log").innerHTML = str;
+    };
+
+    chatSocket.onclose = function (e) {
+        alert("Socket closed unexpectedly, please reload the page.");
+    };
+
+    document.querySelector("#chat-message-input").focus();
+    document.querySelector("#chat-message-input").onkeyup = function (e) {
+        if (e.keyCode === 13) {
+            // enter, return
+            document.querySelector("#chat-message-submit").click();
+        }
+    };
+
+    document.querySelector("#chat-message-submit").onclick = function (e) {
+        var messageInputDom = document.querySelector("#chat-message-input");
+        var message = messageInputDom.value;
+        chatSocket.send(
+            JSON.stringify({
+                text: message,
+            })
+        );
+
+        messageInputDom.value = "";
+    };
+</script> -->
+{% endblock %}

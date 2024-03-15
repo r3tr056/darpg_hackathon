@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+
+{% block title %}{{blog.title}}{% endblock title %}
+
+{% block content %}
+<div class="bg-gray-100 h-full">
+    <div class="container mx-auto p-10">
+        <div class="flex justify-between">
+            <div>
+                <span class="">Welcome, {{data.username}}</span>
+                <h1 class="text-3xl">Portal Home</h1>
+            </div>
+            <div class="pt-5 text-xl mb-4">Streak Score: {{data.score}}</div>
+        </div>
+
+        <div class="pt-5 text-xl mb-4">Pending Reports</div>
+        <div class="relative overflow-x-auto shadow-sm rounded-md">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            REG NO.
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Diary Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Dist. Name | Pincode
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            State
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Subject Matter
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Category
+                        </th>
+                        <th scope="col" class="px-3 py-3">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            MORLY/E/2023/0000001
+                        </th>
+                        <td class="px-6 py-4">
+                            2023-01-01 00:00:19
+                        </td>
+                        <td class="px-6 py-4">
+                            North 24 Parganas 700130
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            WB
+                        </td>
+                        <td class="px-6 py-4">
+                            Railways, ( Railway Board) >> Miscellaneous\r\...
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            <div class="px-2 py-1 rounded-full bg-indigo-700 text-white">Network and Comm...</div>
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                    </tr>
+                    {% for report in data.pending_reports %}
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{report.reg_no}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{report.timestamp}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{report.user.city}} {{report.user.area_code}}
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            {{report.user.state}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{report.subject_content}}
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            <div class="px-2 py-1 rounded-full bg-indigo-700 text-white">{{report.category.description}}
+                            </div>
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pt-5 text-xl mb-4">Completed Reports</div>
+        <div class="relative overflow-x-auto shadow-sm rounded-md">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            REG NO.
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Diary Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Dist. Name | Pincode
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            State
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Subject Matter
+                        </th>
+                        <th scope="col" class="px-3 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-3 py-3">
+                            Share
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            MORLY/E/2023/0000001
+                        </th>
+                        <td class="px-6 py-4">
+                            2023-01-01 00:00:19
+                        </td>
+                        <td class="px-6 py-4">
+                            North 24 Parganas 700130
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            WB
+                        </td>
+                        <td class="px-6 py-4">
+                            Railways, ( Railway Board) >> Miscellaneous\r\...
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                        <td class="p-3 items-center">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-share-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            MOLBR/E/2023/0000001
+                        </th>
+                        <td class="px-6 py-4">
+                            2023-01-01 00:01:45
+                        </td>
+                        <td class="px-6 py-4">
+                            Hyderabad 500023
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            TG
+                        </td>
+                        <td class="px-6 py-4">
+                            Labour and Employment >> PF Withdrawal >> Othe...
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                        <td class="p-3 items-center">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-share-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            GOVUP/E/2023/0000003
+                        </th>
+                        <td class="px-6 py-4">
+                            2023-01-01 00:03:02
+                        </td>
+                        <td class="px-6 py-4">
+                            203001
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            UP
+                        </td>
+                        <td class="px-6 py-4">
+                            XAXPX/X/X0X2X4X0X7\tREGARDING CBCID INSPECTION...
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                        <td class="p-3 items-center">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-share-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            GOVUP/E/2023/0000003
+                        </th>
+                        <td class="px-6 py-4">
+                            2023-01-01 00:03:02
+                        </td>
+                        <td class="px-6 py-4">
+                            203001
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            UP
+                        </td>
+                        <td class="px-6 py-4">
+                            XAXPX/X/X0X2X4X0X7\tREGARDING CBCID INSPECTION...
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                        <td class="p-3 items-center">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-share-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b hover:bg-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            MOLBR/E/2023/0000001
+                        </th>
+                        <td class="px-6 py-4">
+                            2023-01-01 00:01:45
+                        </td>
+                        <td class="px-6 py-4">
+                            Hyderabad 500023
+                        </td>
+                        <td scope="col" class="px-6 py-3">
+                            TG
+                        </td>
+                        <td class="px-6 py-4">
+                            Labour and Employment >> PF Withdrawal >> Othe...
+                        </td>
+                        <td class="p-3 items-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="orange"
+                                class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </td>
+                        <td class="p-3 items-center">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-share-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

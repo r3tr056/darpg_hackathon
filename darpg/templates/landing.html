@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{blog.title}}{% endblock title %}
+
+{% block content %}
+<div class="bg-gray-100 h-full">
+    <div class="container mx-auto">
+        <img src="{% static 'images/banner-3.jpg' %}" class="w-full border-b border-gray-300" alt="...">
+        <h1>Welcome</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts%}
+
+{% endblock %}
