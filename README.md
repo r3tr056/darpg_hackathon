@@ -49,7 +49,7 @@ DocInsight is an AI/ML-driven system designed to streamline the process of handl
 ![Portal](./screenshots/portal.JPG)
 
 ### Report Details Page
-![Report Details](./screenshots/report.JPG.png)
+![Report Details](./screenshots/report.JPG)
 
 ### Search
 ![Report Search](./screenshots/search.JPG)
